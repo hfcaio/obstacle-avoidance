@@ -1,0 +1,7 @@
+ERROR:  
+ERROR: package name 'obstacle-avoidance' is illegal and cannot be used in message generation.
+Please see http://ros.org/wiki/Names
+make[2]: *** [CMakeFiles/obstacle-avoidance_generate_messages_py.dir/build.make:64: /home/sky/obstacle-avoidance/devel/.private/obstacle-avoidance/lib/python3/dist-packages/obstacle-avoidance/msg/_Points.py] Error 2
+make[1]: *** [CMakeFiles/Makefile2:895: CMakeFiles/obstacle-avoidance_generate_messages_py.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:141: all] Error 2

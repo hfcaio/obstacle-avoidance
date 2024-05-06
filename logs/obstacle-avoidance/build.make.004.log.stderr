@@ -1,0 +1,27 @@
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/main.cpp:7:1:[m[K [01;31m[Kerror: [m[K‘[01m[KString[m[K’ does not name a type
+    7 | [01;31m[KString[m[K topic_name = "/spur/laser/scan";
+      | [01;31m[K^~~~~~[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/main.cpp:9:36:[m[K [01;31m[Kerror: [m[K‘[01m[KLaserScan[m[K’ in namespace ‘[01m[Kstd_msgs[m[K’ does not name a type
+    9 | void lidarCallback(const std_msgs::[01;31m[KLaserScan[m[K::ConstPtr& msg){
+      |                                    [01;31m[K^~~~~~~~~[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/main.cpp:9:55:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[K&[m[K’ token
+    9 | void lidarCallback(const std_msgs::LaserScan::ConstPtr[01;31m[K&[m[K msg){
+      |                                                       [01;31m[K^[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/main.cpp:9:55:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K)[m[K’ before ‘[01m[K&[m[K’ token
+    9 | void lidarCallback[34m[K([m[Kconst std_msgs::LaserScan::ConstPtr[01;31m[K&[m[K msg){
+      |                   [34m[K~[m[K                                   [01;31m[K^[m[K
+      |                                                       [32m[K)[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/main.cpp:9:57:[m[K [01;31m[Kerror: [m[Kexpected initializer before ‘[01m[Kmsg[m[K’
+    9 | void lidarCallback(const std_msgs::LaserScan::ConstPtr& [01;31m[Kmsg[m[K){
+      |                                                         [01;31m[K^~~[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/main.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/main.cpp:20:51:[m[K [01;31m[Kerror: [m[K‘[01m[Ktopic_name[m[K’ was not declared in this scope; did you mean ‘[01m[Ktypename[m[K’?
+   20 |     Subscriber sub_lidar_distances = nh.subscribe([01;31m[Ktopic_name[m[K, 50, lidarCallback);
+      |                                                   [01;31m[K^~~~~~~~~~[m[K
+      |                                                   [32m[Ktypename[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/main.cpp:20:67:[m[K [01;31m[Kerror: [m[K‘[01m[KlidarCallback[m[K’ was not declared in this scope
+   20 |     Subscriber sub_lidar_distances = nh.subscribe(topic_name, 50, [01;31m[KlidarCallback[m[K);
+      |                                                                   [01;31m[K^~~~~~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/obstacle-avoidance_node.dir/build.make:63: CMakeFiles/obstacle-avoidance_node.dir/src/main.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:279: CMakeFiles/obstacle-avoidance_node.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

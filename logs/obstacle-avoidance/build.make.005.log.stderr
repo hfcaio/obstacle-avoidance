@@ -1,0 +1,7 @@
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/main.cpp:[m[K In function ‘[01m[Kvoid lidarCallback(const ConstPtr&)[m[K’:
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/main.cpp:10:30:[m[K [01;31m[Kerror: [m[K‘[01m[Kconst struct sensor_msgs::LaserScan_<std::allocator<void> >[m[K’ has no member named ‘[01m[Kdata[m[K’
+   10 |     for (int i = 0; i < msg->[01;31m[Kdata[m[K.size(); i++) {
+      |                              [01;31m[K^~~~[m[K
+make[2]: *** [CMakeFiles/obstacle-avoidance_node.dir/build.make:63: CMakeFiles/obstacle-avoidance_node.dir/src/main.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:279: CMakeFiles/obstacle-avoidance_node.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

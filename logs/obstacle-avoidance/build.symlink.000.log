@@ -1,0 +1,4 @@
+Symlinking /home/sky/obstacle-avoidance/devel/lib/pkgconfig/obstacle-avoidance.pc
+Symlinking /home/sky/obstacle-avoidance/devel/lib/obstacle-avoidance/obstacle-avoidance_node
+Symlinking /home/sky/obstacle-avoidance/devel/share/obstacle-avoidance/cmake/obstacle-avoidanceConfig.cmake
+Symlinking /home/sky/obstacle-avoidance/devel/share/obstacle-avoidance/cmake/obstacle-avoidanceConfig-version.cmake

@@ -1,0 +1,6 @@
+devel_space: /home/sky/obstacle-avoidance/devel
+install: false
+install_space: /home/sky/obstacle-avoidance/install
+profile: default
+source_space: /home/sky/obstacle-avoidance/src
+workspace: /home/sky/obstacle-avoidance

@@ -1,0 +1,1 @@
+/home/sky/obstacle-avoidance/devel/.private/obstacle_avoidance/share/obstacle_avoidance/cmake/obstacle_avoidanceConfig.cmake

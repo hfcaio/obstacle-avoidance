@@ -1,0 +1,1 @@
+/home/sky/obstacle-avoidance/devel/.private/obstacle-avoidance/lib/pkgconfig/obstacle-avoidance.pc

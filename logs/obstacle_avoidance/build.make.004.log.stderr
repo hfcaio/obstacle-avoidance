@@ -1,0 +1,37 @@
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:34:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kinit[m[K’ was not declared in this scope; did you mean ‘[01m[Kint[m[K’?
+   34 |     [01;31m[Kinit[m[K(argc, argv, "rrt");
+      |     [01;31m[K^~~~[m[K
+      |     [32m[Kint[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:35:5:[m[K [01;31m[Kerror: [m[K‘[01m[KNodeHandle[m[K’ was not declared in this scope
+   35 |     [01;31m[KNodeHandle[m[K nh;
+      |     [01;31m[K^~~~~~~~~~[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:36:5:[m[K [01;31m[Kerror: [m[K‘[01m[KSubscriber[m[K’ was not declared in this scope
+   36 |     [01;31m[KSubscriber[m[K sub_local_pose = nh.subscribe("/local_position/pose ", 10, localPoseCallback);
+      |     [01;31m[K^~~~~~~~~~[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:37:15:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K;[m[K’ before ‘[01m[Ksub_obstacles[m[K’
+   37 |     Subscriber[01;31m[K [m[K[32m[Ksub_obstacles[m[K = nh.subscribe("/obstacle_avoidance/obstacles", 10, obstacleCallback);
+      |               [01;31m[K^[m[K[32m[K~~~~~~~~~~~~~[m[K
+      |               [32m[K;[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:38:15:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K;[m[K’ before ‘[01m[Ksub_goal[m[K’
+   38 |     Subscriber[01;31m[K [m[K[32m[Ksub_goal[m[K = nh.subscribe("/obstacle_avoidance/goal", 10, goalCallback);
+      |               [01;31m[K^[m[K[32m[K~~~~~~~~[m[K
+      |               [32m[K;[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:41:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kspin[m[K’ was not declared in this scope; did you mean ‘[01m[Ksin[m[K’?
+   41 |     [01;31m[Kspin[m[K();
+      |     [01;31m[K^~~~[m[K
+      |     [32m[Ksin[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:[m[K In function ‘[01m[Kvoid rrt(geometry_msgs::Point, geometry_msgs::Point)[m[K’:
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:119:5:[m[K [01;31m[Kerror: [m[K‘[01m[KPublisher[m[K’ was not declared in this scope
+  119 |     [01;31m[KPublisher[m[K pub_path = nh.advertise<geometry_msgs::PoseStamped>("/setpoint_position/local", 10);
+      |     [01;31m[K^~~~~~~~~[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:122:9:[m[K [01;31m[Kerror: [m[K‘[01m[KROS_INFO[m[K’ was not declared in this scope
+  122 |         [01;31m[KROS_INFO[m[K("x: %f, y: %f", current->point.x, current->point.y);
+      |         [01;31m[K^~~~~~~~[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:128:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kpub_path[m[K’ was not declared in this scope
+  128 |         [01;31m[Kpub_path[m[K.publish(next);
+      |         [01;31m[K^~~~~~~~[m[K
+make[2]: *** [CMakeFiles/rrt.dir/build.make:63: CMakeFiles/rrt.dir/src/rrt.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:299: CMakeFiles/rrt.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:141: all] Error 2
