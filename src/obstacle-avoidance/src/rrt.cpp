@@ -21,7 +21,7 @@ struct tree {
 //global variables
 geometry_msgs::Point position;
 std::vector<geometry_msgs::Point> obstacles;
-float dist = 1.3, clearence = 2, step_size = 1; // distance between nodes and clearence from obstacles
+float dist = 1.3, clearence = 4, step_size = 1; // distance between nodes and clearence from obstacles
 
 // declaring functions
 void localPoseCallback(const geometry_msgs::PoseStamped::ConstPtr& msg);
@@ -66,7 +66,7 @@ void goalCallback(const geometry_msgs::Point::ConstPtr& msg) {
 void rrt(geometry_msgs::Point start, geometry_msgs::Point goal) {
     tree t;
     t.root = new node;
-    t.root->point = start;
+    t.root->point = goal;
     t.root->parent = nullptr;
     t.nodes.push_back(t.root);
 
@@ -108,9 +108,9 @@ void rrt(geometry_msgs::Point start, geometry_msgs::Point goal) {
             t.nodes.push_back(new_node);
         }
 
-        ROS_INFO("new nodes: x: %f, y: %f and the distance = %f", new_point.x, new_point.y, sqrt(pow(new_point.x - goal.x, 2) + pow(new_point.y - goal.y, 2)));
+        ROS_INFO("new nodes: x: %f, y: %f and the distance = %f", new_point.x, new_point.y, sqrt(pow(new_point.x - start.x, 2) + pow(new_point.y - start.y, 2)));
 
-        if (sqrt(pow(new_point.x - goal.x, 2) + pow(new_point.y - goal.y, 2)) < dist) {
+        if (sqrt(pow(new_point.x - start.x, 2) + pow(new_point.y - start.y, 2)) < dist) {
             node* goal_node = new node;
             goal_node->point = goal;
             goal_node->parent = nearest;
@@ -125,6 +125,12 @@ void rrt(geometry_msgs::Point start, geometry_msgs::Point goal) {
     node* current = t.nodes[t.nodes.size() - 1];
     NodeHandle nh;
     Publisher pub_path = nh.advertise<geometry_msgs::PoseStamped>("/mavros/setpoint_position/local", 10);
+
+    ROS_INFO("start movement from: x:%f y:%f", position.x, position.y);
+    /*while (current->parent != nullptr) {
+        ROS_INFO("go to: x=%f y=%f", current->parent->point.x, current->parent->point.y);
+        current = current->parent;
+    }*/
 
     while (current->parent != nullptr) {
         ROS_INFO("x: %f, y: %f", current->point.x, current->point.y);
@@ -153,9 +159,10 @@ void rrt(geometry_msgs::Point start, geometry_msgs::Point goal) {
 
             pub_path.publish(next);
             spinOnce();
+            Duration(2).sleep();
 
-            while (abs(position.x - next.pose.position.x) > 0.1 && abs(position.y - next.pose.position.y) > 0.1) {
-                ROS_INFO("wait until drone reaches the goal");
+            while (abs(position.x - next.pose.position.x) > dist && abs(position.y - next.pose.position.y) > dist) {
+                ROS_INFO("wait until drone reaches the next position: x:%f y:%f", next.pose.position.x, next.pose.position.y);
                 Duration(1).sleep();
 
                 pub_path.publish(next);

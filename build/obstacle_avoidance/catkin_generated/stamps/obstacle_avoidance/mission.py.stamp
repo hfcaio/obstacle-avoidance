@@ -29,14 +29,15 @@ if __name__ == '__main__':
         rospy.sleep(5)
         
         rate = rospy.Rate(5)
-        while not rospy.is_shutdown():
+        if not rospy.is_shutdown():
             goal = Point()
-            goal.x = 10.0
-            goal.y = 0.0
+            goal.x = 30.0
+            goal.y = 30.0
             goal.z = 2.0
 
             rospy.loginfo('Publishing goal: {}'.format(goal))
             goal_pub.publish(goal)
+            rospy.sleep(5)
             rate.sleep()
 
         rospy.spin()
