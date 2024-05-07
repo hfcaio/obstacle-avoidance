@@ -21,7 +21,7 @@ struct tree {
 //global variables
 geometry_msgs::Point position;
 std::vector<geometry_msgs::Point> obstacles;
-float dist = 1.3, clearence = 4, step_size = 1; // distance between nodes and clearence from obstacles
+float dist = 2.5, clearence = 6, step_size = 1.5; // distance between nodes and clearence from obstacles
 
 // declaring functions
 void localPoseCallback(const geometry_msgs::PoseStamped::ConstPtr& msg);
@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
     Subscriber sub_local_pose = nh.subscribe("/mavros/local_position/pose", 10, localPoseCallback);
     Subscriber sub_obstacles = nh.subscribe("/obstacle_avoidance/obstacles", 10, obstacleCallback);
     Subscriber sub_goal = nh.subscribe("/obstacle_avoidance/goal", 10, goalCallback);
-    Rate loop_rate(10);
+    Rate loop_rate(1);
 
     spin();
     return 0;
@@ -60,6 +60,7 @@ void goalCallback(const geometry_msgs::Point::ConstPtr& msg) {
     goal.z = msg->z;
 
     ROS_INFO("RRT started from x: %f, y: %f to x: %f, y: %f", position.x, position.y, goal.x, goal.y);
+    Duration(10).sleep();
     rrt(position, goal);
 }
 
@@ -132,9 +133,9 @@ void rrt(geometry_msgs::Point start, geometry_msgs::Point goal) {
         current = current->parent;
     }*/
 
-    while (current->parent != nullptr) {
-        ROS_INFO("x: %f, y: %f", current->point.x, current->point.y);
+    //Duration(10).sleep();
 
+    while (current->parent != nullptr) {
         for (geometry_msgs::Point obstacle : obstacles) {
             if (sqrt(pow(current->parent->point.x - obstacle.x, 2) + pow(current->parent->point.y - obstacle.y, 2)) < clearence) {
                 ROS_INFO("RRT recall from x: %f, y: %f to x: %f, y: %f", current->point.x, current->point.y, goal.x, goal.y);
@@ -157,6 +158,7 @@ void rrt(geometry_msgs::Point start, geometry_msgs::Point goal) {
             next.pose.orientation.z = q[2];
             next.pose.orientation.w = q[3];
 
+            ROS_INFO("go to: x=%f y=%f", current->parent->point.x, current->parent->point.y);
             pub_path.publish(next);
             spinOnce();
             Duration(2).sleep();
@@ -176,4 +178,5 @@ void rrt(geometry_msgs::Point start, geometry_msgs::Point goal) {
         }
     }
     ROS_INFO("Goal reached!");
+    return;
 }

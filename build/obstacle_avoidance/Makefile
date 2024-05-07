@@ -233,6 +233,71 @@ obstacle_avoidance_generate_messages_lisp/fast:
 .PHONY : obstacle_avoidance_generate_messages_lisp/fast
 
 #=============================================================================
+# Target rules for targets named clean_test_results_obstacle_avoidance
+
+# Build rule for target.
+clean_test_results_obstacle_avoidance: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 clean_test_results_obstacle_avoidance
+.PHONY : clean_test_results_obstacle_avoidance
+
+# fast build rule for target.
+clean_test_results_obstacle_avoidance/fast:
+	$(MAKE) -f CMakeFiles/clean_test_results_obstacle_avoidance.dir/build.make CMakeFiles/clean_test_results_obstacle_avoidance.dir/build
+.PHONY : clean_test_results_obstacle_avoidance/fast
+
+#=============================================================================
+# Target rules for targets named run_tests_obstacle_avoidance_roslaunch-check_launch
+
+# Build rule for target.
+run_tests_obstacle_avoidance_roslaunch-check_launch: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 run_tests_obstacle_avoidance_roslaunch-check_launch
+.PHONY : run_tests_obstacle_avoidance_roslaunch-check_launch
+
+# fast build rule for target.
+run_tests_obstacle_avoidance_roslaunch-check_launch/fast:
+	$(MAKE) -f CMakeFiles/run_tests_obstacle_avoidance_roslaunch-check_launch.dir/build.make CMakeFiles/run_tests_obstacle_avoidance_roslaunch-check_launch.dir/build
+.PHONY : run_tests_obstacle_avoidance_roslaunch-check_launch/fast
+
+#=============================================================================
+# Target rules for targets named run_tests_obstacle_avoidance_roslaunch-check
+
+# Build rule for target.
+run_tests_obstacle_avoidance_roslaunch-check: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 run_tests_obstacle_avoidance_roslaunch-check
+.PHONY : run_tests_obstacle_avoidance_roslaunch-check
+
+# fast build rule for target.
+run_tests_obstacle_avoidance_roslaunch-check/fast:
+	$(MAKE) -f CMakeFiles/run_tests_obstacle_avoidance_roslaunch-check.dir/build.make CMakeFiles/run_tests_obstacle_avoidance_roslaunch-check.dir/build
+.PHONY : run_tests_obstacle_avoidance_roslaunch-check/fast
+
+#=============================================================================
+# Target rules for targets named _run_tests_obstacle_avoidance
+
+# Build rule for target.
+_run_tests_obstacle_avoidance: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _run_tests_obstacle_avoidance
+.PHONY : _run_tests_obstacle_avoidance
+
+# fast build rule for target.
+_run_tests_obstacle_avoidance/fast:
+	$(MAKE) -f CMakeFiles/_run_tests_obstacle_avoidance.dir/build.make CMakeFiles/_run_tests_obstacle_avoidance.dir/build
+.PHONY : _run_tests_obstacle_avoidance/fast
+
+#=============================================================================
+# Target rules for targets named run_tests_obstacle_avoidance
+
+# Build rule for target.
+run_tests_obstacle_avoidance: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 run_tests_obstacle_avoidance
+.PHONY : run_tests_obstacle_avoidance
+
+# fast build rule for target.
+run_tests_obstacle_avoidance/fast:
+	$(MAKE) -f CMakeFiles/run_tests_obstacle_avoidance.dir/build.make CMakeFiles/run_tests_obstacle_avoidance.dir/build
+.PHONY : run_tests_obstacle_avoidance/fast
+
+#=============================================================================
 # Target rules for targets named trajectory_msgs_generate_messages_nodejs
 
 # Build rule for target.
@@ -361,6 +426,19 @@ actionlib_msgs_generate_messages_eus: cmake_check_build_system
 actionlib_msgs_generate_messages_eus/fast:
 	$(MAKE) -f CMakeFiles/actionlib_msgs_generate_messages_eus.dir/build.make CMakeFiles/actionlib_msgs_generate_messages_eus.dir/build
 .PHONY : actionlib_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named _run_tests_obstacle_avoidance_roslaunch-check_launch
+
+# Build rule for target.
+_run_tests_obstacle_avoidance_roslaunch-check_launch: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _run_tests_obstacle_avoidance_roslaunch-check_launch
+.PHONY : _run_tests_obstacle_avoidance_roslaunch-check_launch
+
+# fast build rule for target.
+_run_tests_obstacle_avoidance_roslaunch-check_launch/fast:
+	$(MAKE) -f CMakeFiles/_run_tests_obstacle_avoidance_roslaunch-check_launch.dir/build.make CMakeFiles/_run_tests_obstacle_avoidance_roslaunch-check_launch.dir/build
+.PHONY : _run_tests_obstacle_avoidance_roslaunch-check_launch/fast
 
 #=============================================================================
 # Target rules for targets named nav_msgs_generate_messages_cpp
@@ -738,6 +816,19 @@ doxygen: cmake_check_build_system
 doxygen/fast:
 	$(MAKE) -f CMakeFiles/doxygen.dir/build.make CMakeFiles/doxygen.dir/build
 .PHONY : doxygen/fast
+
+#=============================================================================
+# Target rules for targets named _run_tests_obstacle_avoidance_roslaunch-check
+
+# Build rule for target.
+_run_tests_obstacle_avoidance_roslaunch-check: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _run_tests_obstacle_avoidance_roslaunch-check
+.PHONY : _run_tests_obstacle_avoidance_roslaunch-check
+
+# fast build rule for target.
+_run_tests_obstacle_avoidance_roslaunch-check/fast:
+	$(MAKE) -f CMakeFiles/_run_tests_obstacle_avoidance_roslaunch-check.dir/build.make CMakeFiles/_run_tests_obstacle_avoidance_roslaunch-check.dir/build
+.PHONY : _run_tests_obstacle_avoidance_roslaunch-check/fast
 
 #=============================================================================
 # Target rules for targets named rosgraph_msgs_generate_messages_py
@@ -1445,6 +1536,11 @@ help:
 	@echo "... obstacle_avoidance_gennodejs"
 	@echo "... obstacle_avoidance_genlisp"
 	@echo "... obstacle_avoidance_generate_messages_lisp"
+	@echo "... clean_test_results_obstacle_avoidance"
+	@echo "... run_tests_obstacle_avoidance_roslaunch-check_launch"
+	@echo "... run_tests_obstacle_avoidance_roslaunch-check"
+	@echo "... _run_tests_obstacle_avoidance"
+	@echo "... run_tests_obstacle_avoidance"
 	@echo "... trajectory_msgs_generate_messages_nodejs"
 	@echo "... trajectory_msgs_generate_messages_lisp"
 	@echo "... trajectory_msgs_generate_messages_cpp"
@@ -1455,6 +1551,7 @@ help:
 	@echo "... actionlib_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... actionlib_msgs_generate_messages_eus"
+	@echo "... _run_tests_obstacle_avoidance_roslaunch-check_launch"
 	@echo "... nav_msgs_generate_messages_cpp"
 	@echo "... trajectory_msgs_generate_messages_eus"
 	@echo "... roscpp_generate_messages_py"
@@ -1486,6 +1583,7 @@ help:
 	@echo "... download_extra_data"
 	@echo "... diagnostic_msgs_generate_messages_cpp"
 	@echo "... doxygen"
+	@echo "... _run_tests_obstacle_avoidance_roslaunch-check"
 	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... geometry_msgs_generate_messages_cpp"
 	@echo "... geometry_msgs_generate_messages_nodejs"
