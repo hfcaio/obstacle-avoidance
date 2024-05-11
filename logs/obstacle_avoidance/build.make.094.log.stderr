@@ -1,0 +1,19 @@
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:[m[K In function ‘[01m[Kvoid rrt(geometry_msgs::Point, geometry_msgs::Point)[m[K’:
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:100:34:[m[K [01;31m[Kerror: [m[Kexpected initializer before ‘[01m[Kt[m[K’
+  100 |     geometry_msgs::Point current [01;31m[Kt[m[K.nodes[0].point;
+      |                                  [01;31m[K^[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:102:51:[m[K [01;31m[Kerror: [m[K‘[01m[Kcurrent[m[K’ was not declared in this scope
+  102 |         geometry_msgs::Point random = Bias(start, [01;31m[Kcurrent[m[K);
+      |                                                   [01;31m[K^~~~~~~[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:135:43:[m[K [01;31m[Kerror: [m[Kbase operand of ‘[01m[K->[m[K’ has non-pointer type ‘[01m[Kgeometry_msgs::Point[m[K’ {aka ‘[01m[Kgeometry_msgs::Point_<std::allocator<void> >[m[K’}
+  135 |             if (minimal_distance(new_point[01;31m[K->[m[Kpoint, goal) < minimal_distance(current, goal)) {
+      |                                           [01;31m[K^~[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:136:36:[m[K [01;31m[Kerror: [m[Kbase operand of ‘[01m[K->[m[K’ has non-pointer type ‘[01m[Kgeometry_msgs::Point[m[K’ {aka ‘[01m[Kgeometry_msgs::Point_<std::allocator<void> >[m[K’}
+  136 |                 current = new_point[01;31m[K->[m[Kpoint;
+      |                                    [01;31m[K^~[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:180:84:[m[K [01;31m[Kerror: [m[K‘[01m[Kmavros_msgs::PostionTarget[m[K’ has not been declared
+  180 |             raw.type_mask = mavros_msgs::PositionTarget::IGNORE_AFX | mavros_msgs::[01;31m[KPostionTarget[m[K::FORCE | mavros_msgs::PositionTarget::IGNORE_YAW;
+      |                                                                                    [01;31m[K^~~~~~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/rrt.dir/build.make:63: CMakeFiles/rrt.dir/src/rrt.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:306: CMakeFiles/rrt.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

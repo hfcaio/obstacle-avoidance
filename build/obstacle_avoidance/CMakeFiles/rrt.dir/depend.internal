@@ -16,6 +16,7 @@ CMakeFiles/rrt.dir/src/rrt.cpp.o
  /opt/ros/noetic/include/geometry_msgs/TwistStamped.h
  /opt/ros/noetic/include/geometry_msgs/Vector3.h
  /opt/ros/noetic/include/geometry_msgs/Vector3Stamped.h
+ /opt/ros/noetic/include/mavros_msgs/PositionTarget.h
  /opt/ros/noetic/include/ros/advertise_options.h
  /opt/ros/noetic/include/ros/advertise_service_options.h
  /opt/ros/noetic/include/ros/assert.h

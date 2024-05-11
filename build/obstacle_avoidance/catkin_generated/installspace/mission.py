@@ -20,7 +20,7 @@ if __name__ == '__main__':
         mode_service(custom_mode="4")
         rospy.sleep(0.1)
         arm_service(True)
-        takeoff_service(altitude=2.0)
+        takeoff_service(altitude=8.0)
 
         #while not res_arm.success and not res_mode.success and not res_takeoff.success:
         #    rospy.logwarn('Failed to arm, set mode, or takeoff')
@@ -32,8 +32,7 @@ if __name__ == '__main__':
         if not rospy.is_shutdown():
             goal = Point()
             goal.x = 10.0
-            goal.y = 10.0
-            goal.z = 2.0
+            goal.y = 0.0
 
             rospy.loginfo('Publishing goal: {}'.format(goal))
             goal_pub.publish(goal)

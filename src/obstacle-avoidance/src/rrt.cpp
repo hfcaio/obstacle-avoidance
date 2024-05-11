@@ -4,6 +4,7 @@
 #include <geometry_msgs/PoseStamped.h>
 #include "obstacle_avoidance/Points.h"
 #include <tf/tf.h>
+#include <mavros_msgs/PositionTarget.h>
 using namespace ros;
 
 //structs 
@@ -21,7 +22,7 @@ struct tree {
 //global variables
 geometry_msgs::Point position;
 std::vector<geometry_msgs::Point> obstacles;
-float dist = 2.5, clearence = 6, step_size = 1.5; // distance between nodes and clearence from obstacles
+float dist = 4.5, clearence = 2, step_size = 1.2; // distance between nodes and clearence from obstacles
 
 // declaring functions
 void localPoseCallback(const geometry_msgs::PoseStamped::ConstPtr& msg);
@@ -60,8 +61,50 @@ void goalCallback(const geometry_msgs::Point::ConstPtr& msg) {
     goal.z = msg->z;
 
     ROS_INFO("RRT started from x: %f, y: %f to x: %f, y: %f", position.x, position.y, goal.x, goal.y);
-    Duration(10).sleep();
+    Duration(1).sleep();
     rrt(position, goal);
+}
+
+float minimal_distance(geometry_msgs::Point goal, geometry_msgs::Point current) {
+    return sqrt(pow(goal.x - current.x, 2) + pow(goal.y - current.y, 2));
+}
+
+float attraction_force(geometry_msgs::Point goal, geometry_msgs::Point current) {
+    int k = 3, distance = minimal_distance(goal, current);
+    return k * distance;
+}
+
+float repulsion_force(geometry_msgs::Point obstacle, geometry_msgs::Point current) {
+    int q = 3, distance = minimal_distance(obstacle, current);
+    return q / pow(distance, 2);
+}
+
+float get_angle(geometry_msgs::Point goal, geometry_msgs::Point current) {
+    return atan2(goal.y - current.y, goal.x - current.x);
+}
+
+geometry_msgs::Point Bias(geometry_msgs::Point goal, geometry_msgs::Point current, int grid_size = 30) {
+    geometry_msgs::Point random;
+    random.x = rand() % (2 * grid_size) + (current.x) - grid_size;
+    random.y = rand() % (2 * grid_size) + (current.y) - grid_size;
+    random.z = 0;
+
+    //ROS_INFO("random points: x: %f, y: %f", random.x, random.y);
+    float theta = get_angle(goal, random);
+
+    //ROS_INFO("theta: %f", theta * 180 / 3.14159);
+
+    geometry_msgs::Point bias;
+    bias.x = attraction_force(goal, random) * cos(theta) + repulsion_force(random, current) * cos(theta);
+    bias.y = attraction_force(goal, random) * sin(theta) + repulsion_force(random, current) * sin(theta);
+
+    //ROS_INFO("bias: x: %f, y: %f", bias.x, bias.y);
+
+    random.x = random.x + bias.x;
+    random.y = random.y + bias.y;
+
+    //Duration(2).sleep();
+    return random;
 }
 
 void rrt(geometry_msgs::Point start, geometry_msgs::Point goal) {
@@ -71,13 +114,9 @@ void rrt(geometry_msgs::Point start, geometry_msgs::Point goal) {
     t.root->parent = nullptr;
     t.nodes.push_back(t.root);
 
+    geometry_msgs::Point curr = t.nodes[0]->point;
     while (true) {
-        geometry_msgs::Point random;
-        random.x = rand() % 100;
-        random.y = rand() % 100;
-        random.z = 0;
-
-        ROS_INFO("random points: x: %f, y: %f", random.x, random.y);
+        geometry_msgs::Point random = Bias(start, curr);
 
         node* nearest = t.nodes[0];
         for (node* n : t.nodes) {
@@ -107,9 +146,13 @@ void rrt(geometry_msgs::Point start, geometry_msgs::Point goal) {
             new_node->parent = nearest;
             nearest->children.push_back(new_node);
             t.nodes.push_back(new_node);
+            //ROS_INFO("new nodes: x: %f, y: %f and the distance = %f", new_point.x, new_point.y, sqrt(pow(new_point.x - start.x, 2) + pow(new_point.y - start.y, 2)));
+
+            if (minimal_distance(new_point, start) < minimal_distance(curr, start)) {
+                curr = new_point;
+            }
         }
 
-        ROS_INFO("new nodes: x: %f, y: %f and the distance = %f", new_point.x, new_point.y, sqrt(pow(new_point.x - start.x, 2) + pow(new_point.y - start.y, 2)));
 
         if (sqrt(pow(new_point.x - start.x, 2) + pow(new_point.y - start.y, 2)) < dist) {
             node* goal_node = new node;
@@ -119,6 +162,8 @@ void rrt(geometry_msgs::Point start, geometry_msgs::Point goal) {
             t.nodes.push_back(goal_node);
             break;
         }
+        ROS_INFO("current node: x: %f, y: %f", curr.x, curr.y);
+        ROS_INFO("Distance: %f", sqrt(pow(curr.x - start.x, 2) + pow(curr.y - start.y, 2)));
         //Duration(1).sleep();
     }
 
@@ -126,6 +171,7 @@ void rrt(geometry_msgs::Point start, geometry_msgs::Point goal) {
     node* current = t.nodes[t.nodes.size() - 1];
     NodeHandle nh;
     Publisher pub_path = nh.advertise<geometry_msgs::PoseStamped>("/mavros/setpoint_position/local", 10);
+    Publisher pub_raw = nh.advertise<mavros_msgs::PositionTarget>("/mavros/setpoint_raw/local", 10);
 
     ROS_INFO("start movement from: x:%f y:%f", position.x, position.y);
     /*while (current->parent != nullptr) {
@@ -133,18 +179,42 @@ void rrt(geometry_msgs::Point start, geometry_msgs::Point goal) {
         current = current->parent;
     }*/
 
-    //Duration(10).sleep();
 
     while (current->parent != nullptr) {
         for (geometry_msgs::Point obstacle : obstacles) {
+            if (sqrt(pow(goal.x - obstacle.x, 2) + pow(goal.y - obstacle.y, 2)) < clearence) {
+                ROS_INFO("Obstacle in x:%f y:%f", obstacle.x, obstacle.y);
+                ROS_INFO("Goal is in the obstacle area! IMPOSSIBLE TO REACH!");
+                return;
+            }
             if (sqrt(pow(current->parent->point.x - obstacle.x, 2) + pow(current->parent->point.y - obstacle.y, 2)) < clearence) {
                 ROS_INFO("RRT recall from x: %f, y: %f to x: %f, y: %f", current->point.x, current->point.y, goal.x, goal.y);
-                Duration(10).sleep();
+                ROS_INFO("Obstacle in x:%f y:%f", obstacle.x, obstacle.y);
+                Duration(1).sleep();
                 rrt(current->point, goal);
                 return;
             }
         }
         try {
+            mavros_msgs::PositionTarget raw;
+            raw.coordinate_frame = mavros_msgs::PositionTarget::FRAME_LOCAL_NED;
+            raw.type_mask = mavros_msgs::PositionTarget::FORCE | mavros_msgs::PositionTarget::IGNORE_PZ | mavros_msgs::PositionTarget::IGNORE_VZ | mavros_msgs::PositionTarget::IGNORE_AFZ;
+
+            raw.velocity.x = 0.001;
+            raw.velocity.y = 0.001;
+            raw.velocity.z = 0;
+
+            raw.position.x = current->parent->point.x;
+            raw.position.y = current->parent->point.y;
+            raw.position.z = position.z;
+
+            raw.acceleration_or_force.x = 0.005;
+            raw.acceleration_or_force.y = 0.005;
+            raw.acceleration_or_force.z = 0;
+
+            raw.yaw = 0;
+            raw.yaw_rate = 0;
+
             geometry_msgs::PoseStamped next;
             next.pose.position.x = current->parent->point.x;
             next.pose.position.y = current->parent->point.y;
@@ -160,10 +230,11 @@ void rrt(geometry_msgs::Point start, geometry_msgs::Point goal) {
 
             ROS_INFO("go to: x=%f y=%f", current->parent->point.x, current->parent->point.y);
             pub_path.publish(next);
+            //pub_raw.publish(raw);
             spinOnce();
-            Duration(2).sleep();
+            Duration(0.01).sleep();
 
-            while (abs(position.x - next.pose.position.x) > dist && abs(position.y - next.pose.position.y) > dist) {
+            while (abs(position.x - next.pose.position.x) > step_size || abs(position.y - next.pose.position.y) > step_size) {
                 ROS_INFO("wait until drone reaches the next position: x:%f y:%f", next.pose.position.x, next.pose.position.y);
                 Duration(1).sleep();
 

@@ -1,0 +1,52 @@
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:[m[K In function ‘[01m[Kgeometry_msgs::Point Bias(geometry_msgs::Point*, geometry_msgs::Point*, int)[m[K’:
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:88:35:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kgeometry_msgs::Point[m[K’ {aka ‘[01m[Kgeometry_msgs::Point_<std::allocator<void> >[m[K’} to ‘[01m[Kgeometry_msgs::Point*[m[K’ {aka ‘[01m[Kgeometry_msgs::Point_<std::allocator<void> >*[m[K’}
+   88 |     float theta = get_angle(goal, [01;31m[Krandom[m[K);
+      |                                   [01;31m[K^~~~~~[m[K
+      |                                   [01;31m[K|[m[K
+      |                                   [01;31m[Kgeometry_msgs::Point {aka geometry_msgs::Point_<std::allocator<void> >}[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:77:67:[m[K [01;36m[Knote: [m[K  initializing argument 2 of ‘[01m[Kfloat get_angle(geometry_msgs::Point*, geometry_msgs::Point*)[m[K’
+   77 | float get_angle(geometry_msgs::Point* goal, [01;36m[Kgeometry_msgs::Point* current[m[K) {
+      |                                             [01;36m[K~~~~~~~~~~~~~~~~~~~~~~^~~~~~~[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:93:37:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kgeometry_msgs::Point[m[K’ {aka ‘[01m[Kgeometry_msgs::Point_<std::allocator<void> >[m[K’} to ‘[01m[Kgeometry_msgs::Point*[m[K’ {aka ‘[01m[Kgeometry_msgs::Point_<std::allocator<void> >*[m[K’}
+   93 |     bias.x = attraction_force(goal, [01;31m[Krandom[m[K) * cos(theta);
+      |                                     [01;31m[K^~~~~~[m[K
+      |                                     [01;31m[K|[m[K
+      |                                     [01;31m[Kgeometry_msgs::Point {aka geometry_msgs::Point_<std::allocator<void> >}[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:72:74:[m[K [01;36m[Knote: [m[K  initializing argument 2 of ‘[01m[Kfloat attraction_force(geometry_msgs::Point*, geometry_msgs::Point*)[m[K’
+   72 | float attraction_force(geometry_msgs::Point* goal, [01;36m[Kgeometry_msgs::Point* current[m[K) {
+      |                                                    [01;36m[K~~~~~~~~~~~~~~~~~~~~~~^~~~~~~[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:94:37:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kgeometry_msgs::Point[m[K’ {aka ‘[01m[Kgeometry_msgs::Point_<std::allocator<void> >[m[K’} to ‘[01m[Kgeometry_msgs::Point*[m[K’ {aka ‘[01m[Kgeometry_msgs::Point_<std::allocator<void> >*[m[K’}
+   94 |     bias.y = attraction_force(goal, [01;31m[Krandom[m[K) * sin(theta);
+      |                                     [01;31m[K^~~~~~[m[K
+      |                                     [01;31m[K|[m[K
+      |                                     [01;31m[Kgeometry_msgs::Point {aka geometry_msgs::Point_<std::allocator<void> >}[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:72:74:[m[K [01;36m[Knote: [m[K  initializing argument 2 of ‘[01m[Kfloat attraction_force(geometry_msgs::Point*, geometry_msgs::Point*)[m[K’
+   72 | float attraction_force(geometry_msgs::Point* goal, [01;36m[Kgeometry_msgs::Point* current[m[K) {
+      |                                                    [01;36m[K~~~~~~~~~~~~~~~~~~~~~~^~~~~~~[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:[m[K In function ‘[01m[Kvoid rrt(geometry_msgs::Point, geometry_msgs::Point)[m[K’:
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:112:46:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kgeometry_msgs::Point[m[K’ {aka ‘[01m[Kgeometry_msgs::Point_<std::allocator<void> >[m[K’} to ‘[01m[Kgeometry_msgs::Point*[m[K’ {aka ‘[01m[Kgeometry_msgs::Point_<std::allocator<void> >*[m[K’} in initialization
+  112 |     geometry_msgs::Point* curr = t.nodes[0]->point;
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:114:52:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kgeometry_msgs::Point**[m[K’ {aka ‘[01m[Kgeometry_msgs::Point_<std::allocator<void> >**[m[K’} to ‘[01m[Kgeometry_msgs::Point*[m[K’ {aka ‘[01m[Kgeometry_msgs::Point_<std::allocator<void> >*[m[K’}
+  114 |         geometry_msgs::Point random = Bias(&start, [01;31m[K&curr[m[K);
+      |                                                    [01;31m[K^~~~~[m[K
+      |                                                    [01;31m[K|[m[K
+      |                                                    [01;31m[Kgeometry_msgs::Point** {aka geometry_msgs::Point_<std::allocator<void> >**}[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:81:77:[m[K [01;36m[Knote: [m[K  initializing argument 2 of ‘[01m[Kgeometry_msgs::Point Bias(geometry_msgs::Point*, geometry_msgs::Point*, int)[m[K’
+   81 | geometry_msgs::Point Bias(geometry_msgs::Point* goal, [01;36m[Kgeometry_msgs::Point* current[m[K, int grid_size = 30) {
+      |                                                       [01;36m[K~~~~~~~~~~~~~~~~~~~~~~^~~~~~~[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:145:73:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kgeometry_msgs::Point**[m[K’ {aka ‘[01m[Kgeometry_msgs::Point_<std::allocator<void> >**[m[K’} to ‘[01m[Kgeometry_msgs::Point*[m[K’ {aka ‘[01m[Kgeometry_msgs::Point_<std::allocator<void> >*[m[K’}
+  145 |             if (minimal_distance(&new_point, &start) < minimal_distance([01;31m[K&curr[m[K, &start)) {
+      |                                                                         [01;31m[K^~~~~[m[K
+      |                                                                         [01;31m[K|[m[K
+      |                                                                         [01;31m[Kgeometry_msgs::Point** {aka geometry_msgs::Point_<std::allocator<void> >**}[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:68:46:[m[K [01;36m[Knote: [m[K  initializing argument 1 of ‘[01m[Kfloat minimal_distance(geometry_msgs::Point*, geometry_msgs::Point*)[m[K’
+   68 | float minimal_distance([01;36m[Kgeometry_msgs::Point* goal[m[K, geometry_msgs::Point* current) {
+      |                        [01;36m[K~~~~~~~~~~~~~~~~~~~~~~^~~~[m[K
+[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:146:24:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kgeometry_msgs::Point[m[K’ {aka ‘[01m[Kgeometry_msgs::Point_<std::allocator<void> >[m[K’} to ‘[01m[Kgeometry_msgs::Point*[m[K’ {aka ‘[01m[Kgeometry_msgs::Point_<std::allocator<void> >*[m[K’} in assignment
+  146 |                 curr = [01;31m[Knew_point[m[K;
+      |                        [01;31m[K^~~~~~~~~[m[K
+      |                        [01;31m[K|[m[K
+      |                        [01;31m[Kgeometry_msgs::Point {aka geometry_msgs::Point_<std::allocator<void> >}[m[K
+make[2]: *** [CMakeFiles/rrt.dir/build.make:63: CMakeFiles/rrt.dir/src/rrt.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:306: CMakeFiles/rrt.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

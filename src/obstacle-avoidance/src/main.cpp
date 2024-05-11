@@ -56,8 +56,9 @@ void localPoseCallback(const geometry_msgs::PoseStamped::ConstPtr& msg) {
 void lidarCallback(const sensor_msgs::LaserScan::ConstPtr& msg) {
     float size = end(msg->ranges) - begin(msg->ranges);
     for (int i = 0; i < size; i++) {
-        if (msg->ranges[i] < 5) {
-            drawObstacles(msg->angle_min + i * msg->angle_increment, msg->ranges[i]);
+        if (msg->ranges[i] < 3) {
+            Duration(0.1).sleep();
+            if (msg->ranges[i] < 3) drawObstacles(msg->angle_min + i * msg->angle_increment, msg->ranges[i]);
         }
     }
 }

@@ -1,6 +1,8 @@
 <launch>
-    <include file="$(find sky_sim)/launch/apm.launch" />
-    <include file="$(find sky_sim)/launch/lidar.launch" />
+    <include file="$(find mavros)/launch/apm.launch" />
+    <include file="$(find rplidar_ros)/launch/rplidar_s1.launch">
+        <remap from="/scan" to="/spur/laser/scan" />
+    </include>
     <node name="obstacle_avoidance" pkg="obstacle_avoidance" type="obstacle_avoidance_node" output="screen"/>
     <node name="rrt" pkg="obstacle_avoidance" type="rrt" output="screen"/>
 </launch>
