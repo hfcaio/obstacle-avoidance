@@ -23,7 +23,7 @@ To test the code in simulation we need 3 terminals:
 
 ### 1 terminal 
 ```zsh
-sim_vehicle -v ArduCopter -f gazebo-iris
+sim_vehicle.py -v ArduCopter -f gazebo-iris
 ```
 
 ### 2 terminal
