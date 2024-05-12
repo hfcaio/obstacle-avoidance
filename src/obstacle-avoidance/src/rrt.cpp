@@ -22,7 +22,7 @@ struct tree {
 //global variables
 geometry_msgs::Point position;
 std::vector<geometry_msgs::Point> obstacles;
-float dist = 4.5, clearence = 2, step_size = 1.2; // distance between nodes and clearence from obstacles
+float dist = 4.5, clearence = 2.5, step_size = 1.2; // distance between nodes and clearence from obstacles
 
 // declaring functions
 void localPoseCallback(const geometry_msgs::PoseStamped::ConstPtr& msg);
@@ -153,7 +153,6 @@ void rrt(geometry_msgs::Point start, geometry_msgs::Point goal) {
             }
         }
 
-
         if (sqrt(pow(new_point.x - start.x, 2) + pow(new_point.y - start.y, 2)) < dist) {
             node* goal_node = new node;
             goal_node->point = goal;
@@ -171,14 +170,12 @@ void rrt(geometry_msgs::Point start, geometry_msgs::Point goal) {
     node* current = t.nodes[t.nodes.size() - 1];
     NodeHandle nh;
     Publisher pub_path = nh.advertise<geometry_msgs::PoseStamped>("/mavros/setpoint_position/local", 10);
-    Publisher pub_raw = nh.advertise<mavros_msgs::PositionTarget>("/mavros/setpoint_raw/local", 10);
 
     ROS_INFO("start movement from: x:%f y:%f", position.x, position.y);
     /*while (current->parent != nullptr) {
         ROS_INFO("go to: x=%f y=%f", current->parent->point.x, current->parent->point.y);
         current = current->parent;
     }*/
-
 
     while (current->parent != nullptr) {
         for (geometry_msgs::Point obstacle : obstacles) {
@@ -196,25 +193,6 @@ void rrt(geometry_msgs::Point start, geometry_msgs::Point goal) {
             }
         }
         try {
-            mavros_msgs::PositionTarget raw;
-            raw.coordinate_frame = mavros_msgs::PositionTarget::FRAME_LOCAL_NED;
-            raw.type_mask = mavros_msgs::PositionTarget::FORCE | mavros_msgs::PositionTarget::IGNORE_PZ | mavros_msgs::PositionTarget::IGNORE_VZ | mavros_msgs::PositionTarget::IGNORE_AFZ;
-
-            raw.velocity.x = 0.001;
-            raw.velocity.y = 0.001;
-            raw.velocity.z = 0;
-
-            raw.position.x = current->parent->point.x;
-            raw.position.y = current->parent->point.y;
-            raw.position.z = position.z;
-
-            raw.acceleration_or_force.x = 0.005;
-            raw.acceleration_or_force.y = 0.005;
-            raw.acceleration_or_force.z = 0;
-
-            raw.yaw = 0;
-            raw.yaw_rate = 0;
-
             geometry_msgs::PoseStamped next;
             next.pose.position.x = current->parent->point.x;
             next.pose.position.y = current->parent->point.y;

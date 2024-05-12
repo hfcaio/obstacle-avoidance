@@ -31,8 +31,8 @@ if __name__ == '__main__':
         rate = rospy.Rate(5)
         if not rospy.is_shutdown():
             goal = Point()
-            goal.x = -10.0
-            goal.y = 0.0
+            goal.x = 1.0
+            goal.y = 1.0
 
             rospy.loginfo('Publishing goal: {}'.format(goal))
             goal_pub.publish(goal)
