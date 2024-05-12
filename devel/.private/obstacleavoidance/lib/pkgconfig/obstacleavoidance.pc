@@ -1,8 +1,0 @@
-prefix=/home/sky/obstacle-avoidance/devel/.private/obstacleavoidance
-
-Name: obstacleavoidance
-Description: Description of obstacleavoidance
-Version: 0.0.0
-Cflags: -I/home/sky/obstacle-avoidance/devel/.private/obstacleavoidance/include
-Libs: -L${prefix}/lib 
-Requires: 

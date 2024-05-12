@@ -1,1 +1,0 @@
-/home/sky/obstacle-avoidance/devel/.private/obstacle_avoidance/share/roseus/ros/obstacle_avoidance/msg/Points.l

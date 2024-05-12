@@ -1,1 +1,0 @@
-/home/sky/obstacle-avoidance/devel/.private/obstacle_avoidance/include/obstacle_avoidance/Points.h

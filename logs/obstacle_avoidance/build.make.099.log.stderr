@@ -1,7 +1,0 @@
-[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:[m[K In function ‘[01m[Kvoid rrt(geometry_msgs::Point, geometry_msgs::Point)[m[K’:
-[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:183:84:[m[K [01;31m[Kerror: [m[K‘[01m[Kmavros_msgs::PostionTarget[m[K’ has not been declared
-  183 |             raw.type_mask = mavros_msgs::PositionTarget::IGNORE_AFX | mavros_msgs::[01;31m[KPostionTarget[m[K::FORCE | mavros_msgs::PositionTarget::IGNORE_YAW;
-      |                                                                                    [01;31m[K^~~~~~~~~~~~~[m[K
-make[2]: *** [CMakeFiles/rrt.dir/build.make:63: CMakeFiles/rrt.dir/src/rrt.cpp.o] Error 1
-make[1]: *** [CMakeFiles/Makefile2:306: CMakeFiles/rrt.dir/all] Error 2
-make: *** [Makefile:141: all] Error 2

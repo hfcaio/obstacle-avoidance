@@ -1,8 +1,0 @@
-[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:[m[K In function ‘[01m[Kvoid rrt(geometry_msgs::Point, geometry_msgs::Point)[m[K’:
-[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:232:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kub_path[m[K’ was not declared in this scope; did you mean ‘[01m[Kpub_path[m[K’?
-  232 |             [01;31m[Kub_path[m[K.publish(next);
-      |             [01;31m[K^~~~~~~[m[K
-      |             [32m[Kpub_path[m[K
-make[2]: *** [CMakeFiles/rrt.dir/build.make:63: CMakeFiles/rrt.dir/src/rrt.cpp.o] Error 1
-make[1]: *** [CMakeFiles/Makefile2:306: CMakeFiles/rrt.dir/all] Error 2
-make: *** [Makefile:141: all] Error 2

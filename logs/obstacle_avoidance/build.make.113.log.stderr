@@ -1,8 +1,0 @@
-[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:[m[K In function ‘[01m[Kvoid rrt(geometry_msgs::Point, geometry_msgs::Point)[m[K’:
-[01m[K/home/sky/obstacle-avoidance/src/obstacle-avoidance/src/rrt.cpp:147:45:[m[K [01;31m[Kerror: [m[K‘[01m[Kstar[m[K’ was not declared in this scope; did you mean ‘[01m[Kstart[m[K’?
-  147 |             if (minimal_distance(new_point, [01;31m[Kstar[m[K) < minimal_distance(curr, star)) {
-      |                                             [01;31m[K^~~~[m[K
-      |                                             [32m[Kstart[m[K
-make[2]: *** [CMakeFiles/rrt.dir/build.make:63: CMakeFiles/rrt.dir/src/rrt.cpp.o] Error 1
-make[1]: *** [CMakeFiles/Makefile2:306: CMakeFiles/rrt.dir/all] Error 2
-make: *** [Makefile:141: all] Error 2

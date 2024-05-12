@@ -1,8 +1,0 @@
-prefix=/home/sky/obstacle-avoidance/install
-
-Name: obstacle-avoidance
-Description: Description of obstacle-avoidance
-Version: 0.0.0
-Cflags: -I${prefix}/include
-Libs: -L${prefix}/lib 
-Requires: 

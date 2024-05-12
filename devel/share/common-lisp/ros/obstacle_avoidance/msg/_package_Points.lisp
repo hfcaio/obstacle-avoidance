@@ -1,1 +1,0 @@
-/home/sky/obstacle-avoidance/devel/.private/obstacle_avoidance/share/common-lisp/ros/obstacle_avoidance/msg/_package_Points.lisp

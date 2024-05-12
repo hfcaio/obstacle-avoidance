@@ -1,1 +1,0 @@
-/home/sky/obstacle-avoidance/devel/.private/obstacle_avoidance/lib/obstacle_avoidance/mission.py
